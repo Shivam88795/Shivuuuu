@@ -20,7 +20,8 @@
     owner: '',
     repo: '',
     branch: 'main',
-    overrides: { avatar: null, sound: null } // owner ko turant preview dikhane ke liye
+    overrides: { avatar: null, sound: null }, // owner ko turant preview dikhane ke liye
+    query: '' // search box ka text
   };
 
   /* ------------------------------ helpers ------------------------------ */
@@ -150,7 +151,7 @@
     );
   }
 
-  function reelCard(r, i, total) {
+  function reelCard(r, i, total, canMove) {
     const embed = r.code
       ? h('div', { class: 'embed' }, h('iframe', {
           src: `https://www.instagram.com/${r.type}/${r.code}/embed/`,
@@ -175,8 +176,8 @@
 
     const admin = state.isAdmin
       ? h('div', { class: 'admin-row' },
-          h('button', { class: 'btn small', type: 'button', disabled: i === 0, onclick: () => moveReel(i, -1) }, '↑'),
-          h('button', { class: 'btn small', type: 'button', disabled: i === total - 1, onclick: () => moveReel(i, 1) }, '↓'),
+          canMove ? h('button', { class: 'btn small', type: 'button', disabled: i === 0, onclick: () => moveReel(i, -1) }, '↑') : null,
+          canMove ? h('button', { class: 'btn small', type: 'button', disabled: i === total - 1, onclick: () => moveReel(i, 1) }, '↓') : null,
           h('button', { class: 'btn small', type: 'button', onclick: () => openReelSheet(r) }, '✎ Edit'),
           h('button', { class: 'btn small danger', type: 'button', onclick: () => deleteReel(r) }, '🗑 Delete')
         )
@@ -193,18 +194,61 @@
     );
   }
 
+  // Search: sirf title me dhundhta hai. Type kiye hue har word ka title me hona zaroori hai.
+  function visibleReels() {
+    const all = (state.data.reels || []).map((r, i) => ({ r, i }));
+    const terms = state.query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) return { list: all, filtering: false };
+    const list = all.filter(({ r }) => {
+      const title = (r.title || '').toLowerCase();
+      return terms.every((t) => title.includes(t));
+    });
+    return { list, filtering: true };
+  }
+
   function reelsSection() {
-    const reels = state.data.reels || [];
+    const total = (state.data.reels || []).length;
+    const countEl = h('span', { class: 'count' });
+    const grid = h('div', { class: 'grid' });
+    const input = h('input', {
+      type: 'search',
+      class: 'search-input',
+      placeholder: 'Search reels by title…',
+      'aria-label': 'Search reels',
+      value: state.query,
+      autocomplete: 'off',
+      autocapitalize: 'off',
+      spellcheck: 'false',
+      enterkeyhint: 'search'
+    });
+    const clear = h('button', {
+      class: 'search-clear',
+      type: 'button',
+      'aria-label': 'Clear search',
+      onclick: () => { input.value = ''; state.query = ''; paint(); input.focus(); }
+    }, '×');
+
+    function paint() {
+      const { list, filtering } = visibleReels();
+      clear.classList.toggle('show', !!state.query);
+      countEl.textContent = !total ? '' : filtering ? `${list.length} of ${total}` : `${total} reel${total > 1 ? 's' : ''}`;
+      grid.replaceChildren(...(list.length
+        ? list.map(({ r, i }) => reelCard(r, i, total, !filtering))
+        : [h('div', { class: 'empty' }, total
+            ? `"${state.query.trim()}" se koi reel nahi mili.`
+            : 'Abhi koi reel nahi hai. Jaldi hi aayengi ✨')]));
+    }
+
+    input.addEventListener('input', () => { state.query = input.value; paint(); });
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') input.blur(); });
+    paint();
+
     return h('section', {},
-      h('div', { class: 'sec-head' },
-        h('h2', {}, 'Reels & Prompts'),
-        h('span', { class: 'count' }, reels.length ? `${reels.length} reel${reels.length > 1 ? 's' : ''}` : '')
-      ),
-      h('div', { class: 'grid' },
-        reels.length
-          ? reels.map((r, i) => reelCard(r, i, reels.length))
-          : h('div', { class: 'empty' }, 'Abhi koi reel nahi hai. Jaldi hi aayengi ✨')
-      )
+      h('div', { class: 'sec-head' }, h('h2', {}, 'Reels & Prompts'), countEl),
+      total > 0
+        ? h('div', { class: 'search' }, h('span', { class: 'search-icon', 'aria-hidden': 'true' }, '🔎'), input, clear)
+        : null,
+      grid
     );
   }
 
