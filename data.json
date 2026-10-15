@@ -1,9 +1,10 @@
 {
   "profile": {
-    "name": "Your Name",
+    "name": "Shivuuu.ai",
     "bio": "My favourite reels with ready-to-copy prompts.",
-    "avatar": "",
-    "sound": ""
+    "avatar": "assets/avatar-1792041479973.jpg",
+    "sound": "assets/sound-1792041479973.mp3"
   },
-  "reels": []
+  "reels": [],
+  "updated": "2026-10-15T05:18:06.706Z"
 }
