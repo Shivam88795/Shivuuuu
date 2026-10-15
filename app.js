@@ -186,13 +186,24 @@
     return h('article', { class: 'card' },
       embed,
       h('div', { class: 'body' },
-        r.title ? h('div', { class: 'title' }, r.title) : null,
+        r.title ? h('div', { class: 'title' }, highlight(r.title, state.query)) : null,
         r.prompt ? h('div', {}, h('div', { class: 'label' }, 'Prompt'), h('div', { class: 'prompt' }, r.prompt)) : null,
         actions,
         admin
       )
     );
   }
+
+  // Title me match hue words ko highlight karta hai.
+  function highlight(text, query) {
+    const terms = String(query || '').toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) return text;
+    const esc = terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).sort((a, b) => b.length - a.length);
+    const re = new RegExp('(' + esc.join('|') + ')', 'gi');
+    return text.split(re).map((part, i) => (i % 2 ? h('mark', {}, part) : part));
+  }
+
+  const SEARCH_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>';
 
   // Search: sirf title me dhundhta hai. Type kiye hue har word ka title me hona zaroori hai.
   function visibleReels() {
@@ -227,10 +238,21 @@
       'aria-label': 'Clear search',
       onclick: () => { input.value = ''; state.query = ''; paint(); input.focus(); }
     }, '×');
+    const chip = h('span', { class: 'search-chip', 'aria-hidden': 'true' });
+    const kbd = h('kbd', { class: 'search-kbd', 'aria-hidden': 'true' }, '/');
+    const icon = h('span', { class: 'search-icon', 'aria-hidden': 'true' });
+    icon.innerHTML = SEARCH_SVG;
+    const box = h('div', { class: 'search-box' },
+      h('div', { class: 'search-field' }, icon, input, chip, kbd, clear));
 
     function paint() {
       const { list, filtering } = visibleReels();
-      clear.classList.toggle('show', !!state.query);
+      const has = !!state.query;
+      clear.classList.toggle('show', has);
+      box.classList.toggle('has-text', has);
+      chip.classList.toggle('show', filtering);
+      chip.classList.toggle('none', filtering && !list.length);
+      chip.textContent = filtering ? (list.length ? `${list.length} found` : 'No match') : '';
       countEl.textContent = !total ? '' : filtering ? `${list.length} of ${total}` : `${total} reel${total > 1 ? 's' : ''}`;
       grid.replaceChildren(...(list.length
         ? list.map(({ r, i }) => reelCard(r, i, total, !filtering))
@@ -240,14 +262,27 @@
     }
 
     input.addEventListener('input', () => { state.query = input.value; paint(); });
-    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') input.blur(); });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') input.blur();
+      if (e.key === 'Escape' && state.query) { input.value = ''; state.query = ''; paint(); }
+    });
     paint();
+
+    // "/" dabao to search box me seedha cursor aa jaye (desktop)
+    if (!window.__slashSearch) {
+      window.__slashSearch = true;
+      document.addEventListener('keydown', (e) => {
+        const tag = (e.target && e.target.tagName) || '';
+        if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || /INPUT|TEXTAREA|SELECT/.test(tag)) return;
+        if (document.querySelector('.overlay')) return;
+        const el = document.querySelector('.search-input');
+        if (el) { e.preventDefault(); el.focus(); }
+      });
+    }
 
     return h('section', {},
       h('div', { class: 'sec-head' }, h('h2', {}, 'Reels & Prompts'), countEl),
-      total > 0
-        ? h('div', { class: 'search' }, h('span', { class: 'search-icon', 'aria-hidden': 'true' }, '🔎'), input, clear)
-        : null,
+      total > 0 ? h('div', { class: 'search' }, box) : null,
       grid
     );
   }
