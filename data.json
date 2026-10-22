@@ -4,7 +4,11 @@
     "bio": "My favourite reels with ready-to-copy prompts.",
     "avatar": "assets/avatar-1792062353214.jpg",
     "sounds": [
-      "assets/sound-1792047556928.mp3"
+      "assets/sound-1792047556928.mp3",
+      "assets/sound-1792691851866-1.mp3",
+      "assets/sound-1792691851866-2.mp3",
+      "assets/sound-1792691851866-3.mp3",
+      "assets/sound-1792691851866-4.mp3"
     ]
   },
   "reels": [
@@ -29,5 +33,5 @@
       ]
     }
   ],
-  "updated": "2026-10-22T17:55:09.096Z"
+  "updated": "2026-10-22T17:57:49.788Z"
 }
