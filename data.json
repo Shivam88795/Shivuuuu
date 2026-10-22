@@ -3,7 +3,9 @@
     "name": "Shivuuu.ai",
     "bio": "My favourite reels with ready-to-copy prompts.",
     "avatar": "assets/avatar-1792062353214.jpg",
-    "sound": "assets/sound-1792047556928.mp3"
+    "sounds": [
+      "assets/sound-1792047556928.mp3"
+    ]
   },
   "reels": [
     {
@@ -12,7 +14,9 @@
       "type": "reel",
       "code": "DejbmNZzyGJ",
       "title": "How to make this viral car effect",
-      "prompt": "\"First-person POV (Point of View), jisme ek vyakti ne black leather gloves pehne hue hain. Scene ek khule, flat safed desert (salt flat) me hai jiske upar saaf neela aasmaan hai. Aasmaan se car ke alag-alag parts tezi se niche ki taraf gir rahe hain. Vyakti achanak apne dono haath aage karta hai aur saare car ke parts hawa me hi freeze ho jaate hain. Phir vyakti apni mutthi band karta hai aur haath apni taraf kichta hai, jisse saare parts tezi se ek saath judkar ek sleek, silver futuristic car me assemble ho jaate hain. Aakhir me, vyakti ke haath me ek car ki chabi aati hai, wo button dabata hai, aur car ki headlights on ho jaati hain.\""
+      "prompts": [
+        "\"First-person POV (Point of View), jisme ek vyakti ne black leather gloves pehne hue hain. Scene ek khule, flat safed desert (salt flat) me hai jiske upar saaf neela aasmaan hai. Aasmaan se car ke alag-alag parts tezi se niche ki taraf gir rahe hain. Vyakti achanak apne dono haath aage karta hai aur saare car ke parts hawa me hi freeze ho jaate hain. Phir vyakti apni mutthi band karta hai aur haath apni taraf kichta hai, jisse saare parts tezi se ek saath judkar ek sleek, silver futuristic car me assemble ho jaate hain. Aakhir me, vyakti ke haath me ek car ki chabi aati hai, wo button dabata hai, aur car ki headlights on ho jaati hain.\""
+      ]
     },
     {
       "id": "mv94oumi",
@@ -20,8 +24,10 @@
       "type": "reel",
       "code": "DeeYXZ9T_jk",
       "title": "How to make this insane clip free with ai",
-      "prompt": "\"holding a wooden cane, sprinting incredibly fast, performing dynamic parkour dives, rolls, and leaps over a concrete barrier on an airport tarmac. In the background, there are parked luxury cars and a black private jet. Dynamic tracking camera following the fast movement, realistic cinematic lighting, high-speed action scene.\"\nAap bas apne character ka naam ya @handle is prompt ke shuru mein laga dena, aur aapka perfect action scene ban jayega."
+      "prompts": [
+        "\"holding a wooden cane, sprinting incredibly fast, performing dynamic parkour dives, rolls, and leaps over a concrete barrier on an airport tarmac. In the background, there are parked luxury cars and a black private jet. Dynamic tracking camera following the fast movement, realistic cinematic lighting, high-speed action scene.\"\nAap bas apne character ka naam ya @handle is prompt ke shuru mein laga dena, aur aapka perfect action scene ban jayega."
+      ]
     }
   ],
-  "updated": "2026-10-16T11:37:58.475Z"
+  "updated": "2026-10-22T17:55:09.096Z"
 }
