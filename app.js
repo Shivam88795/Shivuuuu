@@ -10,17 +10,18 @@
 
   const API = 'https://api.github.com';
   const TOKEN_KEY = 'reelsite_gh_token';
-  const MAX_SOUND = 3 * 1024 * 1024; // 3 MB
+  const MAX_SOUND = 3 * 1024 * 1024; // 3 MB (har sound ki limit)
+  const MAX_SOUNDS = 5; // profile me max kitni sounds
   const cfg = window.SITE_CONFIG || {};
 
   const state = {
-    data: { profile: { name: '', bio: '', avatar: '', sound: '' }, reels: [] },
+    data: { profile: { name: '', bio: '', avatar: '', sounds: [] }, reels: [] },
     isAdmin: false,
     token: null,
     owner: '',
     repo: '',
     branch: 'main',
-    overrides: { avatar: null, sound: null }, // owner ko turant preview dikhane ke liye
+    overrides: { avatar: null, sounds: {} }, // owner ko turant preview dikhane ke liye (sounds: path -> blob url)
     query: '' // search box ka text
   };
 
@@ -112,12 +113,29 @@
       });
     } catch (_) {}
   }
-  function playSound() {
-    const src = state.overrides.sound || state.data.profile.sound;
+  function soundSrc(path) {
+    return state.overrides.sounds[path] || path;
+  }
+  function soundPaths() {
+    return (state.data.profile.sounds || []).filter(Boolean);
+  }
+  // Ek specific sound bajata hai (admin ke Test button ke liye bhi).
+  function playSrc(src) {
     if (!src) { chime(); return; }
     try { if (audio) audio.pause(); } catch (_) {}
     audio = new Audio(src);
     audio.play().catch(() => chime());
+  }
+  // Har tap par random sound. Sequence nahi hota, aur jab 2+ sounds hon
+  // to lagatar wahi sound dobara nahi aata.
+  let lastSound = -1;
+  function playSound() {
+    const list = soundPaths();
+    if (!list.length) { chime(); return; }
+    let i = Math.floor(Math.random() * list.length);
+    if (list.length > 1 && i === lastSound) i = (i + 1 + Math.floor(Math.random() * (list.length - 1))) % list.length;
+    lastSound = i;
+    playSrc(soundSrc(list[i]));
   }
 
   /* ------------------------------ rendering ---------------------------- */
@@ -162,17 +180,32 @@
         }))
       : null;
 
-    const copyBtn = h('button', { class: 'btn primary', type: 'button' }, '📋 Copy prompt');
-    copyBtn.addEventListener('click', async () => {
-      const ok = await copyText(r.prompt || '');
-      copyBtn.textContent = ok ? '✓ Copied!' : 'Copy nahi hua';
-      setTimeout(() => (copyBtn.textContent = '📋 Copy prompt'), 1600);
-    });
+    const prompts = reelPrompts(r);
+    const many = prompts.length > 1;
 
+    function makeCopyBtn(text, label, cls) {
+      const b = h('button', { class: cls, type: 'button' }, label);
+      b.addEventListener('click', async () => {
+        const ok = await copyText(text);
+        b.textContent = ok ? '✓ Copied!' : 'Copy nahi hua';
+        setTimeout(() => (b.textContent = label), 1600);
+      });
+      return b;
+    }
+
+    // Ek prompt ho to pehle jaisa layout (Copy button, Open ke saath).
+    // Kai prompts hon to har prompt ka apna Copy button.
     const actions = h('div', { class: 'row' },
-      r.prompt ? copyBtn : null,
+      prompts.length === 1 ? makeCopyBtn(prompts[0], '📋 Copy prompt', 'btn primary') : null,
       h('a', { class: 'btn', href: r.url, target: '_blank', rel: 'noopener noreferrer' }, 'Open ↗')
     );
+
+    const promptBlocks = prompts.map((text, n) =>
+      h('div', { class: 'prompt-block' },
+        h('div', { class: 'label' }, many ? `Prompt ${n + 1}` : 'Prompt'),
+        h('div', { class: 'prompt' }, text),
+        many ? makeCopyBtn(text, `📋 Copy prompt ${n + 1}`, 'btn small copy-one') : null
+      ));
 
     const admin = state.isAdmin
       ? h('div', { class: 'admin-row' },
@@ -187,7 +220,7 @@
       embed,
       h('div', { class: 'body' },
         r.title ? h('div', { class: 'title' }, highlight(r.title, state.query)) : null,
-        r.prompt ? h('div', {}, h('div', { class: 'label' }, 'Prompt'), h('div', { class: 'prompt' }, r.prompt)) : null,
+        promptBlocks.length ? h('div', { class: 'prompt-list' }, promptBlocks) : null,
         actions,
         admin
       )
@@ -392,10 +425,27 @@
     return f ? JSON.parse(b64ToText(f.content)) : null;
   }
 
+  // Reel ke saare prompts (purane data me sirf `prompt` string hota tha, use bhi support karta hai).
+  function reelPrompts(r) {
+    const list = Array.isArray(r.prompts) ? r.prompts : (r.prompt ? [r.prompt] : []);
+    return list.map((t) => String(t || '').trim()).filter(Boolean);
+  }
+
   function normalize(d) {
     d = d || {};
-    d.profile = Object.assign({ name: '', bio: '', avatar: '', sound: '' }, d.profile || {});
+    d.profile = Object.assign({ name: '', bio: '', avatar: '', sounds: [] }, d.profile || {});
+    // Purana single `sound` ko naye `sounds` list me badal do.
+    if (!Array.isArray(d.profile.sounds)) d.profile.sounds = [];
+    if (d.profile.sound) {
+      if (!d.profile.sounds.includes(d.profile.sound)) d.profile.sounds.unshift(d.profile.sound);
+      delete d.profile.sound;
+    }
+    d.profile.sounds = d.profile.sounds.filter(Boolean).slice(0, MAX_SOUNDS);
     d.reels = Array.isArray(d.reels) ? d.reels : [];
+    d.reels.forEach((r) => {
+      r.prompts = reelPrompts(r);
+      delete r.prompt;
+    });
     return d;
   }
 
@@ -453,7 +503,7 @@
     localStorage.removeItem(TOKEN_KEY);
     state.token = null;
     state.isAdmin = false;
-    state.overrides = { avatar: null, sound: null };
+    state.overrides = { avatar: null, sounds: {} };
     closeSheet();
     loadPublicData().then((d) => { state.data = normalize(d); render(); }).catch(() => render());
     toast('Logout ho gaya');
@@ -495,11 +545,43 @@
     const name = h('input', { type: 'text', id: 'pn', value: p.name || '', maxlength: '60' });
     const bio = h('textarea', { id: 'pb', maxlength: '300' }, p.bio || '');
     const avatar = h('input', { type: 'file', id: 'pa', accept: 'image/*' });
-    const sound = h('input', { type: 'file', id: 'ps', accept: 'audio/*,.mp3,.wav,.ogg,.m4a' });
-    let removeSound = false;
-    const rmBtn = h('button', { class: 'btn small', type: 'button' }, 'Remove current sound');
-    rmBtn.addEventListener('click', () => { removeSound = true; rmBtn.textContent = 'Sound hat jaayegi (Save dabao)'; });
-    const testBtn = h('button', { class: 'btn small', type: 'button', onclick: playSound }, '▶ Test sound');
+    const sound = h('input', { type: 'file', id: 'ps', accept: 'audio/*,.mp3,.wav,.ogg,.m4a', multiple: true });
+
+    // Working list: purani sounds (path) + nayi chuni hui files. Max 5.
+    const items = soundPaths().map((path) => ({ path, name: path.split('/').pop(), file: null, url: '' }));
+    const soundList = h('div', { class: 'sound-list' });
+    const soundCount = h('span', { class: 'note' });
+    function paintSounds() {
+      soundCount.textContent = `${items.length} / ${MAX_SOUNDS} sounds`;
+      sound.disabled = items.length >= MAX_SOUNDS;
+      soundList.replaceChildren(...(items.length
+        ? items.map((it, n) => h('div', { class: 'sound-item' },
+            h('span', { class: 'sound-name' }, `${n + 1}. ${it.name}${it.file ? ' (new)' : ''}`),
+            h('button', { class: 'btn small', type: 'button', onclick: () => playSrc(it.file ? it.url : soundSrc(it.path)) }, '▶'),
+            h('button', { class: 'btn small danger', type: 'button', onclick: () => { items.splice(n, 1); paintSounds(); } }, '✕')
+          ))
+        : [h('p', { class: 'note' }, 'Abhi koi sound nahi hai (default chime bajega).')]));
+    }
+    sound.addEventListener('change', () => {
+      for (const f of Array.from(sound.files)) {
+        if (items.length >= MAX_SOUNDS) { toast(`Max ${MAX_SOUNDS} sounds hi ho sakti hain.`, true); break; }
+        if (f.size > MAX_SOUND) { toast(`"${f.name}" 3 MB se badi hai, skip ki.`, true); continue; }
+        items.push({ path: '', name: f.name, file: f, url: URL.createObjectURL(f) });
+      }
+      sound.value = '';
+      paintSounds();
+    });
+    paintSounds();
+
+    const testBtn = h('button', {
+      class: 'btn small',
+      type: 'button',
+      onclick: () => {
+        if (!items.length) { chime(); return; }
+        const it = items[Math.floor(Math.random() * items.length)];
+        playSrc(it.file ? it.url : soundSrc(it.path));
+      }
+    }, '🔀 Test random');
     const save = h('button', { class: 'btn primary', type: 'button' }, 'Save');
 
     save.addEventListener('click', () => busy(save, 'Saving…', async () => {
@@ -513,18 +595,22 @@
         np.avatar = path;
         state.overrides.avatar = dataUrl;
       }
-      if (sound.files[0]) {
-        const f = sound.files[0];
-        if (f.size > MAX_SOUND) throw new Error('Sound 3 MB se chhoti honi chahiye.');
-        const ext = (f.name.split('.').pop() || 'mp3').toLowerCase().replace(/[^a-z0-9]/g, '') || 'mp3';
-        const path = `assets/sound-${stamp}.${ext}`;
-        await putFile(path, await blobToB64(f), 'Update profile sound');
-        np.sound = path;
-        state.overrides.sound = URL.createObjectURL(f);
-      } else if (removeSound) {
-        np.sound = '';
-        state.overrides.sound = null;
+      // Nayi sounds upload karo, phir final list (max 5) save karo.
+      const finalPaths = [];
+      for (let n = 0; n < items.length; n++) {
+        const it = items[n];
+        if (it.file) {
+          const ext = (it.file.name.split('.').pop() || 'mp3').toLowerCase().replace(/[^a-z0-9]/g, '') || 'mp3';
+          const path = `assets/sound-${stamp}-${n}.${ext}`;
+          await putFile(path, await blobToB64(it.file), 'Add profile sound');
+          state.overrides.sounds[path] = it.url; // turant preview ke liye
+          finalPaths.push(path);
+        } else {
+          finalPaths.push(it.path);
+        }
       }
+      np.sounds = finalPaths;
+      delete np.sound;
 
       state.data.profile = np;
       await saveData('Update profile');
@@ -535,12 +621,13 @@
 
     openSheet(
       h('h3', {}, 'Edit profile'),
-      h('p', { class: 'sub' }, 'Photo square me crop hoke chhoti ho jaati hai. Sound max 3 MB.'),
+      h('p', { class: 'sub' }, `Photo square me crop hoke chhoti ho jaati hai. Max ${MAX_SOUNDS} sounds, har sound max 3 MB.`),
       h('div', { class: 'field' }, h('label', { for: 'pn' }, 'Name'), name),
       h('div', { class: 'field' }, h('label', { for: 'pb' }, 'Bio'), bio),
       h('div', { class: 'field' }, h('label', { for: 'pa' }, 'Profile picture (naya choose karo)'), avatar),
-      h('div', { class: 'field' }, h('label', { for: 'ps' }, 'Click sound (mp3 / wav / ogg / m4a)'), sound,
-        h('div', { class: 'row' }, testBtn, p.sound ? rmBtn : null)),
+      h('div', { class: 'field' }, h('label', { for: 'ps' }, 'Click sounds (mp3 / wav / ogg / m4a) — har tap par random ek bajegi'),
+        soundList, soundCount, sound,
+        h('div', { class: 'row' }, testBtn)),
       h('div', { class: 'row' }, save, h('button', { class: 'btn', type: 'button', onclick: closeSheet }, 'Cancel'))
     );
   }
@@ -549,7 +636,30 @@
     const editing = !!reel;
     const link = h('input', { type: 'url', id: 'rl', placeholder: 'https://www.instagram.com/reel/XXXXXXXX/', value: reel ? reel.url : '' });
     const title = h('input', { type: 'text', id: 'rt', placeholder: 'Optional heading', value: reel ? reel.title || '' : '', maxlength: '120' });
-    const prompt = h('textarea', { id: 'rp', placeholder: 'Is reel ka prompt yahan paste karo…' }, reel ? reel.prompt || '' : '');
+    // Kitne bhi prompts: har prompt ka apna textarea, ✕ se hatao, ➕ se naya jodo.
+    const promptBox = h('div', { class: 'prompt-edit-list' });
+    function addPromptField(text) {
+      const ta = h('textarea', { class: 'prompt-edit', placeholder: 'Prompt yahan paste karo…' }, text || '');
+      const row = h('div', { class: 'prompt-edit-row' },
+        h('div', { class: 'prompt-edit-head' },
+          h('span', { class: 'label prompt-edit-label' }),
+          h('button', { class: 'btn small danger', type: 'button', onclick: () => { row.remove(); renumber(); } }, '✕ Remove')
+        ),
+        ta);
+      promptBox.append(row);
+      renumber();
+      return ta;
+    }
+    function renumber() {
+      const rows = Array.from(promptBox.children);
+      rows.forEach((row, n) => {
+        row.querySelector('.prompt-edit-label').textContent = `Prompt ${n + 1}`;
+        row.querySelector('.btn.danger').style.visibility = rows.length > 1 ? 'visible' : 'hidden';
+      });
+    }
+    const existing = reel ? reelPrompts(reel) : [];
+    (existing.length ? existing : ['']).forEach((t) => addPromptField(t));
+    const addPromptBtn = h('button', { class: 'btn small', type: 'button', onclick: () => addPromptField('').focus() }, '➕ Add another prompt');
     const save = h('button', { class: 'btn primary', type: 'button' }, editing ? 'Update reel' : 'Add reel');
 
     save.addEventListener('click', () => busy(save, 'Saving…', async () => {
@@ -561,7 +671,7 @@
         type: info.type,
         code: info.code,
         title: title.value.trim(),
-        prompt: prompt.value.trim()
+        prompts: Array.from(promptBox.querySelectorAll('textarea')).map((t) => t.value.trim()).filter(Boolean)
       };
       if (editing) {
         const i = state.data.reels.findIndex((x) => x.id === reel.id);
@@ -577,10 +687,10 @@
 
     openSheet(
       h('h3', {}, editing ? 'Edit reel' : 'Add reel'),
-      h('p', { class: 'sub' }, 'Instagram link paste karo aur uska prompt likho. Jitni chaho utni reels add kar sakte ho.'),
+      h('p', { class: 'sub' }, 'Instagram link paste karo aur uske prompts likho. Ek reel ke saath jitne chaho utne prompts, aur jitni chaho utni reels add kar sakte ho.'),
       h('div', { class: 'field' }, h('label', { for: 'rl' }, 'Instagram reel link'), link),
       h('div', { class: 'field' }, h('label', { for: 'rt' }, 'Title (optional)'), title),
-      h('div', { class: 'field' }, h('label', { for: 'rp' }, 'Prompt'), prompt),
+      h('div', { class: 'field' }, promptBox, addPromptBtn),
       h('div', { class: 'row' }, save, h('button', { class: 'btn', type: 'button', onclick: closeSheet }, 'Cancel'))
     );
   }

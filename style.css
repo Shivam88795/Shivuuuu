@@ -140,6 +140,23 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin:36px 0 0}
 .field input:focus,.field textarea:focus{outline:2px solid var(--g2);outline-offset:0}
 .field input[type=file]{font-size:13px;color:var(--muted)}
 .note{font-size:12px;color:var(--muted)}
+
+/* multiple prompts (public card) */
+.prompt-list{display:flex;flex-direction:column;gap:14px}
+.prompt-block{display:flex;flex-direction:column;gap:6px}
+.prompt-block .btn.copy-one{align-self:flex-start}
+
+/* admin: multiple prompts editor */
+.prompt-edit-list{display:flex;flex-direction:column;gap:14px}
+.prompt-edit-row{display:flex;flex-direction:column;gap:6px}
+.prompt-edit-head{display:flex;align-items:center;justify-content:space-between}
+.field .prompt-edit{min-height:110px}
+
+/* admin: sounds list */
+.sound-list{display:flex;flex-direction:column;gap:8px}
+.sound-item{display:flex;align-items:center;gap:8px;background:var(--card2);border:1px solid var(--line);
+  border-radius:12px;padding:6px 6px 6px 12px}
+.sound-name{flex:1;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .menu{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 
 #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(20px);z-index:80;
