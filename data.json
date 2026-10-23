@@ -13,6 +13,17 @@
   },
   "reels": [
     {
+      "id": "mvktxntd",
+      "url": "https://www.instagram.com/reel/De1V2MlTPlj/",
+      "type": "reel",
+      "code": "De1V2MlTPlj",
+      "title": "How to make this viral dog dance ai video",
+      "prompts": [
+        "Image prompt \nCreate an ultra-realistic, funny anthropomorphic version of a normal pet dog, standing upright on two hind legs like a human in a traditional Indian village farm. The dog should have its original natural breed, face, fur color, and recognizable features preserved. Give the dog a playful, confident expression with its tongue slightly out, one front paw raised to its forehead in a funny salute, and the other paw resting on its waist. Dress it in a colorful traditional Indian gamcha tied around its waist, with bright orange, yellow, and pink fabric flowing naturally. Background: a beautiful rural Indian farm with wooden fencing, a brown cow, a few chickens, green grass, a hay shed, and a large shady tree. Warm golden-hour sunlight, realistic fur texture, natural shadows, cinematic depth of field, detailed paws, lifelike anatomy, professional photography, highly detailed, 4K quality, vertical 9:16 composition, full body visible, realistic environment, humorous viral social media video aesthetic. No text, no watermark, no cartoon, no illustration.",
+        "Video prompt \n\"A pug dog standing on its hind legs wearing a colorful cloth wrap, dancing expressively and fastly in a sad, dramatic Bollywood style, perfectly synchronized to a melancholic Hindi song. The dog should have human-like movements and facial expressions conveying heartbreak. Background is a rural farm setting with cows, chickens, and a rustic hut.\""
+      ]
+    },
+    {
       "id": "mvkeg5fe",
       "url": "https://www.instagram.com/reel/Dey9gDuT30V/",
       "type": "reel",
@@ -45,5 +56,5 @@
       ]
     }
   ],
-  "updated": "2026-10-23T03:17:34.203Z"
+  "updated": "2026-10-23T10:31:05.425Z"
 }
