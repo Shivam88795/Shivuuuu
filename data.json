@@ -13,6 +13,18 @@
   },
   "reels": [
     {
+      "id": "mvkeg5fe",
+      "url": "https://www.instagram.com/reel/Dey9gDuT30V/",
+      "type": "reel",
+      "code": "Dey9gDuT30V",
+      "title": "Make this viral profile clean ai video",
+      "prompts": [
+        "Image prompt :\nCreate an ultra-realistic, high-quality 9:16 vertical Instagram creator profile poster using the two uploaded reference images.\n\nREFERENCE 1 — MY PERSONAL PHOTO: Use my exact face, hairstyle, skin tone, facial features, and identity. Preserve my natural appearance without beautification or facial changes.\n\nREFERENCE 2 — MY INSTAGRAM PROFILE SCREENSHOT: Recreate my Instagram profile interface accurately, including my username, profile picture, bio, follower count, post count, following count, dashboard, profile buttons, and visible post thumbnails. Keep all profile details consistent with the uploaded screenshot. Do not invent new statistics or change my username.\n\nCOMPOSITION: Place my Instagram profile screenshot as the full-screen background, resembling a real Instagram profile page on a clean white interface. Position a realistic, full-body cutout of me standing confidently in the center foreground, overlapping the profile interface and post grid. My entire body should be visible from head to shoes, with natural proportions and realistic edges.\n\nOUTFIT: A stylish blue-and-white color-block jacket, plain black T-shirt, relaxed-fit black jeans, and white sneakers. Hands inside pockets, relaxed confident posture, looking directly at the camera. Adapt the outfit to my reference photo if needed.\n\nLIGHTING & QUALITY: Professional studio lighting, realistic skin texture, sharp facial details, natural shadows beneath my shoes, premium creator branding, crisp Instagram UI, photorealistic compositing, HDR, 4K quality.\n\nIMPORTANT: Preserve my exact identity. Keep the Instagram screenshot recognizable and readable. Do not distort the face, hands, body proportions, profile layout, or thumbnails. No extra text, no watermark, no additional logos, no unnecessary objects. Make it look like a professionally edited creator profile poster, not an AI-generated collage.",
+        "Video prompt 1:\nA miniature version of me climbs down from profile pic and wipes off and cleans the profile usina cloth. Seamless movements. Clean whole of the profile pic in the backaround",
+        "Video prompt 2:\nHe decorates the profile in background and decorates the floor with garlands the picks up a pumpkin and perform aarti"
+      ]
+    },
+    {
       "id": "mvaw8pmw",
       "url": "https://www.instagram.com/reel/DejbmNZzyGJ/",
       "type": "reel",
@@ -33,5 +45,5 @@
       ]
     }
   ],
-  "updated": "2026-10-22T17:57:49.788Z"
+  "updated": "2026-10-23T03:17:34.203Z"
 }
