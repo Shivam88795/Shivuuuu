@@ -13,6 +13,16 @@
   },
   "reels": [
     {
+      "id": "mvp80zyt",
+      "url": "https://www.instagram.com/reel/De9QQZfTNvW/",
+      "type": "reel",
+      "code": "De9QQZfTNvW",
+      "title": "How to make this viral attitude sapwa ai video",
+      "prompts": [
+        "AI Generator ke liye Prompt:\n\"A 3D animated, anthropomorphic green lizard character with a cool, confident, and slightly menacing attitude. He has a smug smile and is wearing stylish black sunglasses, a silver chain necklace with a crown pendant, a plain white t-shirt underneath an unbuttoned light grey casual shirt, black pants, and black beaded bracelets on his wrists. He is standing in the middle of a beautiful snowy mountain village at dusk. The background features cozy wooden cabins with warm glowing string lights (one cabin has a 'MOUNTAIN GOODS' sign), snow-covered pine trees, and grand snow-capped mountains. Snowflakes are gently falling in the air. He starts with his hands in his pockets, speaks with a calm but dangerous tone, gestures with one hand, and then turns around to walk away into the snowy street. Cinematic lighting, ultra-detailed, high-quality 3D animation style.\"\n\nVideo ke liye Dialogue (Voiceover ya Lip-sync ke liye):\n\n\"Main ladai jhagde se door rehta hu, to log sochte hain ki main darta hu... Dua karna, kabhi gusse me mulakat na ho.\"  \n\n(Note: Video ke end mein jo skull wala animation pop up hota hai, wo usually video editing software mein as an overlay lagaya jata hai, isliye main prompt mein base character ki details hi rakhi hain)."
+      ]
+    },
+    {
       "id": "mvmchxh9",
       "url": "https://www.instagram.com/reel/De4ExDTTQYx/",
       "type": "reel",
@@ -67,5 +77,5 @@
       ]
     }
   ],
-  "updated": "2026-10-24T11:59:52.391Z"
+  "updated": "2026-10-26T12:16:40.469Z"
 }
