@@ -22,7 +22,8 @@
     repo: '',
     branch: 'main',
     overrides: { avatar: null, sounds: {} }, // owner ko turant preview dikhane ke liye (sounds: path -> blob url)
-    query: '' // search box ka text
+    query: '', // search box ka text
+    pinId: null // shared link se aayi reel ka id: ye reel sabse upar dikhegi
   };
 
   /* ------------------------------ helpers ------------------------------ */
@@ -72,6 +73,40 @@
     const t = m[1].toLowerCase();
     const type = t.startsWith('reel') ? 'reel' : t;
     return { type, code: m[2], url: `https://www.instagram.com/${type}/${m[2]}/` };
+  }
+
+  // Reel ka shareable link: site ka URL + ?reel=<id>. Sirf admin ke buttons isse banate hain.
+  function reelLink(r) {
+    const u = new URL(location.href);
+    u.pathname = u.pathname.replace(/index\.html$/, '');
+    u.search = '';
+    u.hash = '';
+    u.searchParams.set('reel', r.id);
+    return u.toString();
+  }
+
+  // URL me ?reel=<id> (ya ?q=<text>) ho to search box me title bhar do aur reel ko pin kar do.
+  function applyLinkParams() {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('reel');
+    const q = params.get('q');
+    if (!id && !q) return;
+    const reel = id ? (state.data.reels || []).find((x) => x.id === id) : null;
+    if (reel) {
+      state.pinId = reel.id;
+      state.query = reel.title || '';
+    } else if (q) {
+      state.query = q;
+    } else if (state.data.reels.length) {
+      toast('Ye reel ab available nahi hai.', true);
+    }
+  }
+
+  function clearPin() {
+    state.pinId = null;
+    if (/[?&](reel|q)=/.test(location.search)) {
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
   }
 
   async function copyText(text) {
@@ -211,12 +246,21 @@
       ? h('div', { class: 'admin-row' },
           canMove ? h('button', { class: 'btn small', type: 'button', disabled: i === 0, onclick: () => moveReel(i, -1) }, '↑') : null,
           canMove ? h('button', { class: 'btn small', type: 'button', disabled: i === total - 1, onclick: () => moveReel(i, 1) }, '↓') : null,
+          h('button', {
+            class: 'btn small',
+            type: 'button',
+            onclick: async () => {
+              const ok = await copyText(reelLink(r));
+              toast(ok ? 'Prompt link copy ho gaya ✓' : 'Link copy nahi hua', !ok);
+            }
+          }, '🔗 Copy link'),
           h('button', { class: 'btn small', type: 'button', onclick: () => openReelSheet(r) }, '✎ Edit'),
           h('button', { class: 'btn small danger', type: 'button', onclick: () => deleteReel(r) }, '🗑 Delete')
         )
       : null;
 
-    return h('article', { class: 'card' },
+    return h('article', { class: 'card' + (state.pinId === r.id ? ' pinned' : ''), 'data-id': r.id },
+      state.pinId === r.id ? h('div', { class: 'pin-tag' }, '📌 Aapki reel') : null,
       embed,
       h('div', { class: 'body' },
         r.title ? h('div', { class: 'title' }, highlight(r.title, state.query)) : null,
@@ -242,12 +286,19 @@
   function visibleReels() {
     const all = (state.data.reels || []).map((r, i) => ({ r, i }));
     const terms = state.query.toLowerCase().split(/\s+/).filter(Boolean);
-    if (!terms.length) return { list: all, filtering: false };
-    const list = all.filter(({ r }) => {
-      const title = (r.title || '').toLowerCase();
-      return terms.every((t) => title.includes(t));
-    });
-    return { list, filtering: true };
+    let list = all;
+    if (terms.length) {
+      list = all.filter(({ r }) => {
+        const title = (r.title || '').toLowerCase();
+        return terms.every((t) => title.includes(t));
+      });
+    }
+    // Shared link wali reel hamesha sabse upar (first number par).
+    if (state.pinId) {
+      const k = list.findIndex(({ r }) => r.id === state.pinId);
+      if (k > 0) list = [list[k], ...list.slice(0, k), ...list.slice(k + 1)];
+    }
+    return { list, filtering: terms.length > 0 };
   }
 
   function reelsSection() {
@@ -269,8 +320,12 @@
       class: 'search-clear',
       type: 'button',
       'aria-label': 'Clear search',
-      onclick: () => { input.value = ''; state.query = ''; paint(); input.focus(); }
+      onclick: () => { input.value = ''; state.query = ''; clearPin(); paint(); input.focus(); }
     }, '×');
+    // Bina title wali shared reel ke liye: search box khali hota hai, to "Show all" bar dikhao.
+    const pinBar = h('div', { class: 'pin-bar' },
+      h('span', {}, '📌 Shared reel upar pin hai'),
+      h('button', { class: 'btn small', type: 'button', onclick: () => { clearPin(); paint(); } }, 'Show all reels'));
     const chip = h('span', { class: 'search-chip', 'aria-hidden': 'true' });
     const kbd = h('kbd', { class: 'search-kbd', 'aria-hidden': 'true' }, '/');
     const icon = h('span', { class: 'search-icon', 'aria-hidden': 'true' });
@@ -287,17 +342,22 @@
       chip.classList.toggle('none', filtering && !list.length);
       chip.textContent = filtering ? (list.length ? `${list.length} found` : 'No match') : '';
       countEl.textContent = !total ? '' : filtering ? `${list.length} of ${total}` : `${total} reel${total > 1 ? 's' : ''}`;
+      pinBar.style.display = state.pinId && !state.query ? 'flex' : 'none';
       grid.replaceChildren(...(list.length
-        ? list.map(({ r, i }) => reelCard(r, i, total, !filtering))
+        ? list.map(({ r, i }) => reelCard(r, i, total, !filtering && !state.pinId))
         : [h('div', { class: 'empty' }, total
             ? `"${state.query.trim()}" se koi reel nahi mili.`
             : 'Abhi koi reel nahi hai. Jaldi hi aayengi ✨')]));
     }
 
-    input.addEventListener('input', () => { state.query = input.value; paint(); });
+    input.addEventListener('input', () => {
+      state.query = input.value;
+      if (!state.query.trim()) clearPin();
+      paint();
+    });
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') input.blur();
-      if (e.key === 'Escape' && state.query) { input.value = ''; state.query = ''; paint(); }
+      if (e.key === 'Escape' && state.query) { input.value = ''; state.query = ''; clearPin(); paint(); }
     });
     paint();
 
@@ -316,6 +376,7 @@
     return h('section', {},
       h('div', { class: 'sec-head' }, h('h2', {}, 'Reels & Prompts'), countEl),
       total > 0 ? h('div', { class: 'search' }, box) : null,
+      pinBar,
       grid
     );
   }
@@ -721,7 +782,12 @@
     // 1) Public data (har visitor ke liye)
     try { state.data = normalize(await loadPublicData()); }
     catch (e) { toast('Data load nahi hua', true); }
+    applyLinkParams(); // shared link: title search me bhar do + reel pin karo
     render();
+    if (state.pinId || state.query) {
+      // Header ke neeche seedha reels section par le jao, taaki pinned reel upar hi dikhe.
+      setTimeout(() => { const el = $('.sec-head'); if (el) el.scrollIntoView({ block: 'start' }); }, 60);
+    }
 
     // 2) Agar is device me pehle se owner token hai to admin mode chalu
     const saved = localStorage.getItem(TOKEN_KEY);
