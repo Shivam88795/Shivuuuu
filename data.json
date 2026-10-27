@@ -13,6 +13,16 @@
   },
   "reels": [
     {
+      "id": "mvqngz2x",
+      "url": "https://www.instagram.com/reel/De_1bJqzLve/",
+      "type": "reel",
+      "code": "De_1bJqzLve",
+      "title": "How to make this viral cricket video",
+      "prompts": [
+        "Video prompt\n\n\nVILLAGE CRICKET PULL SHOT – GOOGLE FLOW REFERENCE-VIDEO PROMPT\n(Upload: @video1 = cricket_reference_10s_MUTED.mp4, @image1 = your photo. Works for boy or girl. 10s, 9:16)\nDURATION: 10 seconds.\nASPECT RATIO: 9:16 vertical.\nREFERENCE VIDEO (MASTER)\n@video1 is the master reference. Recreate it exactly, frame by frame: the same camera position, camera angle, framing, camera distance, lens look, slow motion timing and the same continuous shot. Copy every movement exactly as in @video1: the active batting stance, the bat waggles, the tap of the bat on the pitch, the backlift, the ball arriving at waist/chest height, the pull shot and the bat swing path, the ball flying up into the sky, the slow-motion one-leg finishing pose, turning to the camera, hiding the face behind the bat, the smile and walking away. Same timing as @video1.\nLOCATION: Keep the location exactly as in @video1 — the same dusty village cricket ground, the same cement pitch, the same three wooden stumps in the same place next to the batter, the same sky-blue building, the same trees and the same hazy evening sky. Do not change or add anything to the location.\nIDENTITY\n@image1 is the ONLY identity reference. Replace the person in @video1 with the person in @image1 — same face, gender, age, skin tone, body shape and hairstyle as @image1. Do not copy the original person&#8217;s face from @video1.\nClothes and shoes come from @image1 (same colours and style), identical in every frame. If the legs or shoes are not visible in @image1, use plain trousers matching the top and white sneakers.\nOnly one person in the video.\nBAT AND BALL: Same bat and ball movement as @video1. Plain wooden bat with no stickers, no brand name, no text.\nREALISM: Photorealistic real phone video, natural skin, natural motion, same lighting as @video1.\nAUDIO: Preserve the original background music and its timing from @video1 if supported. Do not add dialogue, voice-over or unrelated sound effects. No lip-sync, no speaking.\nSTRICT RULES\n&#8211; Do not invent new scenes, do not cut to close-ups, do not change the camera angle.\n&#8211; No extra people. No text, captions, logos or watermarks.\n&#8211; Keep 9:16 vertical.\nFINAL RESULT: The exact same video as @video1, with only the person replaced by the person from @image1."
+      ]
+    },
+    {
       "id": "mvp80zyt",
       "url": "https://www.instagram.com/reel/De9QQZfTNvW/",
       "type": "reel",
@@ -77,5 +87,5 @@
       ]
     }
   ],
-  "updated": "2026-10-26T12:16:40.469Z"
+  "updated": "2026-10-27T12:16:46.233Z"
 }
