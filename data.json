@@ -13,6 +13,17 @@
   },
   "reels": [
     {
+      "id": "mvs3k6xj",
+      "url": "https://www.instagram.com/reel/DfCbmNqTxRU/",
+      "type": "reel",
+      "code": "DfCbmNqTxRU",
+      "title": "Face lock in ai images and video generation",
+      "prompts": [
+        "🔒 UNIVERSAL IMAGE FACE LOCK — STRICT IDENTITY PRESERVATION\n\nUse the uploaded reference photo as the ONLY source of facial identity. Preserve the person's exact original face and identity with maximum possible accuracy.\n\nABSOLUTE FACE LOCK:\n\n- Keep the exact same facial structure, face shape, forehead, jawline, cheekbones, chin, nose shape, lips, eyes, eyebrows, ears, and natural facial proportions.\n- Preserve the original skin tone, natural skin texture, pores, facial marks, and unique identifying features.\n- Keep the original hairstyle, hairline, and facial hair exactly the same unless explicitly instructed otherwise.\n- Maintain the person's original age appearance and natural, recognizable identity.\n- Do NOT beautify, reshape, retouch, smooth, reconstruct, stylize, or regenerate the face.\n- Do NOT create a similar-looking person or an AI-generated replacement face.\n- No face swapping, face morphing, artificial symmetry, skin whitening, or changes to facial proportions.\n- Make the result look like the exact same real person photographed in a different scene.\n\nEDITING PRIORITY: Change only the requested elements, such as clothing, pose, body position, background, props, camera framing, and lighting. Keep the face untouched and consistent with the reference image.\n\nFINAL QUALITY CHECK: Before finalizing, compare the generated face with the reference photo. Prioritize identity preservation over artistic styling, beauty enhancement, or creative interpretation.\n\nSTRICT RULE: Same person, same face, same identity. No facial alterations. Maximum reference fidelity, photorealistic output, natural skin texture, no AI-looking face.",
+        "🔒 UNIVERSAL VIDEO FACE LOCK — STRICT IDENTITY PRESERVATION\n\nUse the uploaded reference image as the ONLY source of the person's facial identity. Maintain the exact same recognizable person throughout the entire video, from the first frame to the last frame.\n\nABSOLUTE FACE LOCK:\nPreserve the original face shape, forehead, jawline, cheekbones, chin, nose, lips, eyes, eyebrows, ears, skin tone, natural skin texture, facial marks, hairstyle, hairline, and facial hair exactly as shown in the reference image.\n\nFRAME-BY-FRAME IDENTITY CONSISTENCY:\n\n- Keep the same facial identity in every frame, with no face morphing, identity drift, or random facial changes.\n- Do not regenerate, beautify, reshape, smooth, or replace the face.\n- Prevent flickering facial features, changing eye shapes, unstable lips, shifting jawlines, and inconsistent skin tones.\n- Maintain natural facial proportions during head turns, body movements, and changes in camera perspective.\n- Preserve the original person's age appearance and realistic skin texture.\n- Keep facial expressions natural and subtle without distorting identity.\n\nMOTION AND CAMERA:\nAllow realistic body movement, natural blinking, subtle head movements, and physically believable actions. Keep the face visually consistent during motion. Avoid unnecessary fast head turns, extreme facial angles, excessive motion blur, and rapid camera movements that could distort facial identity.\n\nEDITING RULE:\nChange only the scene elements explicitly requested in the main prompt, such as outfit, background, environment, body movement, props, and camera motion. Do not alter the person's facial identity.\n\nSTRICT NEGATIVE INSTRUCTIONS:\nNo face swap, no identity change, no face morphing, no facial reconstruction, no AI-generated replacement face, no facial flickering, no inconsistent eyes, no changing nose or lips, no skin-tone shifts, no artificial beauty filters, and no identity drift between frames.\n\nFINAL OUTPUT:\nPhotorealistic video featuring the exact same recognizable person from the reference image, with maximum possible facial consistency across all frames. Identity preservation takes priority over unnecessary visual effects or stylization."
+      ]
+    },
+    {
       "id": "mvqngz2x",
       "url": "https://www.instagram.com/reel/De_1bJqzLve/",
       "type": "reel",
@@ -87,5 +98,5 @@
       ]
     }
   ],
-  "updated": "2026-10-27T12:16:46.233Z"
+  "updated": "2026-10-28T12:34:56.412Z"
 }
