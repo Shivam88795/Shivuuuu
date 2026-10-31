@@ -259,6 +259,8 @@
         )
       : null;
 
+    const priceBox = r.price > 0 ? priceSection(r) : null;
+
     return h('article', { class: 'card' + (state.pinId === r.id ? ' pinned' : ''), 'data-id': r.id },
       state.pinId === r.id ? h('div', { class: 'pin-tag' }, '📌 Aapki reel') : null,
       embed,
@@ -266,9 +268,55 @@
         r.title ? h('div', { class: 'title' }, highlight(r.title, state.query)) : null,
         promptBlocks.length ? h('div', { class: 'prompt-list' }, promptBlocks) : null,
         actions,
+        priceBox,
         admin
       )
     );
+  }
+
+  // Reel ka paid "Mai banake du?" section. Sirf tab dikhta hai jab reel ka price > 0 ho.
+  function tgName() {
+    return String(state.data.profile.telegram || '').replace(/[^A-Za-z0-9_]/g, '');
+  }
+
+  function priceSection(r) {
+    const p = state.data.profile;
+    const tg = tgName();
+    const qrSrc = state.overrides.qr || p.qr || '';
+
+    const unlocked = h('div', { class: 'unlock-box', hidden: true },
+      h('div', { class: 'notice' },
+        h('b', {}, 'Payment ka screenshot Telegram par bhejo'),
+        h('br'),
+        tg
+          ? h('a', { class: 'tg-btn', href: `https://t.me/${tg}`, target: '_blank', rel: 'noopener noreferrer' }, `@${tg}`)
+          : h('span', { class: 'note' }, '(Telegram ID abhi set nahi hai)'),
+        h('br'),
+        'Screenshot check hone ke baad tumhara video bana kar Telegram par bhej diya jayega.'),
+      h('div', { class: 'label' }, 'Aage kya hoga'),
+      h('div', { class: 'steps' },
+        h('div', { class: 'step' }, 'Payment ka screenshot Telegram par bhejo'),
+        h('div', { class: 'step' }, 'Apni video/image Telegram par ', h('b', {}, 'File'),
+          ' ke roop me bhejo (quality kharab na ho), saath me batao video me kya chahiye (topic, style, details)'),
+        h('div', { class: 'step' }, 'Tumhare liye video bana kar Telegram par bheja jayega')));
+
+    const payBtn = h('button', { class: 'btn primary', type: 'button' }, 'Maine pay kar diya');
+    payBtn.addEventListener('click', () => {
+      unlocked.hidden = false;
+      payBtn.style.display = 'none';
+      unlocked.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    return h('div', { class: 'price-box' },
+      h('div', { class: 'price-head' },
+        h('h3', {}, 'Mai banake du?'),
+        h('div', { class: 'price-amt' }, `₹${r.price}`)),
+      qrSrc
+        ? h('div', { class: 'qr-wrap' }, h('img', { class: 'qr-img', src: qrSrc, alt: 'Payment QR', loading: 'lazy' }))
+        : (state.isAdmin ? h('p', { class: 'note' }, 'QR set nahi hai: Edit profile me QR upload karo.') : null),
+      h('p', { class: 'hint' }, 'QR scan karke pay karo, fir neeche button dabao'),
+      payBtn,
+      unlocked);
   }
 
   // Title me match hue words ko highlight karta hai.
@@ -505,6 +553,7 @@
     d.reels = Array.isArray(d.reels) ? d.reels : [];
     d.reels.forEach((r) => {
       r.prompts = reelPrompts(r);
+      r.price = Math.max(0, Math.round(Number(r.price) || 0));
       delete r.prompt;
     });
     return d;
@@ -643,11 +692,23 @@
         playSrc(it.file ? it.url : soundSrc(it.path));
       }
     }, '🔀 Test random');
+    const tgInput = h('input', { type: 'text', id: 'pt', value: p.telegram || '', maxlength: '40', placeholder: 'username (bina @ ke)', autocapitalize: 'none' });
+    const qrInput = h('input', { type: 'file', id: 'pq', accept: 'image/*' });
     const save = h('button', { class: 'btn primary', type: 'button' }, 'Save');
 
     save.addEventListener('click', () => busy(save, 'Saving…', async () => {
-      const np = { ...state.data.profile, name: name.value.trim(), bio: bio.value.trim() };
+      const np = { ...state.data.profile, name: name.value.trim(), bio: bio.value.trim(), telegram: tgInput.value.replace(/[^A-Za-z0-9_]/g, '') };
       const stamp = Date.now();
+
+      const qrFile = qrInput.files[0];
+      if (qrFile) {
+        if (qrFile.size > 2 * 1024 * 1024) throw new Error('QR image 2 MB se choti rakho.');
+        const ext = (qrFile.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '') || 'png';
+        const qpath = `assets/qr-${stamp}.${ext}`;
+        await putFile(qpath, await blobToB64(qrFile), 'Update payment QR');
+        np.qr = qpath;
+        state.overrides.qr = URL.createObjectURL(qrFile);
+      }
 
       if (avatar.files[0]) {
         const { blob, dataUrl } = await fileToAvatar(avatar.files[0]);
@@ -685,6 +746,8 @@
       h('p', { class: 'sub' }, `Photo square me crop hoke chhoti ho jaati hai. Max ${MAX_SOUNDS} sounds, har sound max 3 MB.`),
       h('div', { class: 'field' }, h('label', { for: 'pn' }, 'Name'), name),
       h('div', { class: 'field' }, h('label', { for: 'pb' }, 'Bio'), bio),
+      h('div', { class: 'field' }, h('label', { for: 'pt' }, 'Telegram username — payment screenshot yahin aayega'), tgInput),
+      h('div', { class: 'field' }, h('label', { for: 'pq' }, 'Payment QR image (PhonePe / UPI) — naya choose karo'), qrInput),
       h('div', { class: 'field' }, h('label', { for: 'pa' }, 'Profile picture (naya choose karo)'), avatar),
       h('div', { class: 'field' }, h('label', { for: 'ps' }, 'Click sounds (mp3 / wav / ogg / m4a) — har tap par random ek bajegi'),
         soundList, soundCount, sound,
@@ -697,6 +760,7 @@
     const editing = !!reel;
     const link = h('input', { type: 'url', id: 'rl', placeholder: 'https://www.instagram.com/reel/XXXXXXXX/', value: reel ? reel.url : '' });
     const title = h('input', { type: 'text', id: 'rt', placeholder: 'Optional heading', value: reel ? reel.title || '' : '', maxlength: '120' });
+    const price = h('input', { type: 'number', id: 'rp', min: '0', step: '1', inputmode: 'numeric', placeholder: 'Khali ya 0 = price section nahi dikhega', value: reel && reel.price > 0 ? String(reel.price) : '' });
     // Kitne bhi prompts: har prompt ka apna textarea, ✕ se hatao, ➕ se naya jodo.
     const promptBox = h('div', { class: 'prompt-edit-list' });
     function addPromptField(text) {
@@ -732,6 +796,7 @@
         type: info.type,
         code: info.code,
         title: title.value.trim(),
+        price: Math.max(0, Math.round(Number(price.value) || 0)),
         prompts: Array.from(promptBox.querySelectorAll('textarea')).map((t) => t.value.trim()).filter(Boolean)
       };
       if (editing) {
@@ -751,6 +816,7 @@
       h('p', { class: 'sub' }, 'Instagram link paste karo aur uske prompts likho. Ek reel ke saath jitne chaho utne prompts, aur jitni chaho utni reels add kar sakte ho.'),
       h('div', { class: 'field' }, h('label', { for: 'rl' }, 'Instagram reel link'), link),
       h('div', { class: 'field' }, h('label', { for: 'rt' }, 'Title (optional)'), title),
+      h('div', { class: 'field' }, h('label', { for: 'rp' }, 'Price ₹ ("Mai banake du?" section) — optional'), price),
       h('div', { class: 'field' }, promptBox, addPromptBtn),
       h('div', { class: 'row' }, save, h('button', { class: 'btn', type: 'button', onclick: closeSheet }, 'Cancel'))
     );

@@ -177,3 +177,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin:36px 0 0}
   background:linear-gradient(135deg,rgba(245,133,41,.35),rgba(221,42,123,.35))}
 .pin-bar{display:none;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px;
   padding:10px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
+
+/* ---------- Paid "Mai banake du?" section ---------- */
+.price-box{border:1px solid var(--line);border-radius:16px;background:var(--card2);padding:14px;display:flex;flex-direction:column;gap:12px}
+.price-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price-head h3{margin:0;font-size:17px}
+.price-amt{font-size:26px;font-weight:700;color:#7cf0a8}
+.qr-wrap{align-self:center;width:200px;max-width:100%;aspect-ratio:1;background:#fff;border-radius:14px;padding:8px;display:grid;place-items:center}
+.qr-img{width:100%;height:100%;object-fit:contain;display:block}
+.price-box .hint{margin:0;text-align:center}
+.unlock-box[hidden]{display:none}
+.unlock-box{display:flex;flex-direction:column;gap:12px;border-top:1px dashed var(--line);padding-top:12px}
+.notice{background:rgba(255,179,71,.1);border-left:4px solid #ffb347;border-radius:10px;padding:12px;font-size:14px;line-height:1.6}
+.tg-btn{display:inline-block;margin:6px 0;padding:8px 14px;border-radius:10px;background:#229ED9;color:#fff;font-weight:700;text-decoration:none}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:8px}
+.step{position:relative;padding:11px 12px 11px 50px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:14px;line-height:1.5}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:12px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
