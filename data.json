@@ -13,6 +13,16 @@
   },
   "reels": [
     {
+      "id": "mvwegws3",
+      "url": "https://www.instagram.com/reel/DfKMd_wTngq/",
+      "type": "reel",
+      "code": "DfKMd_wTngq",
+      "title": "How to make this viral trend video",
+      "prompts": [
+        "CHARACTER REPLACEMENT — STRICT REFERENCE IMAGE LOCK\n\nUse the uploaded video as the primary video reference. Replace BOTH original characters in the video with the two characters provided in the reference images.\n\nCHARACTER REPLACEMENT INSTRUCTIONS:\n\n1. Boy Character: The boy character is provided in the reference image. Completely replace the original man standing on the RIGHT side with this reference boy. Preserve his exact facial identity, facial structure, hairstyle, skin tone, outfit, body proportions and overall appearance.\n\n2. Girl Character: The girl character is also provided in the reference image. Completely replace the original woman standing on the LEFT side with this reference girl. Preserve her exact facial identity, facial features, hairstyle, skin tone, outfit and body proportions.\n\nSCENE AND ACTION PRESERVATION:\n\n- Keep the exact same modern kitchen environment from the original video.\n- The boy stands on the RIGHT side of the frame.\n- The girl stands on the LEFT side of the frame.\n- The boy clumsily spills coffee powder and milk directly onto the white countertop next to the red mug.\n- The girl holds the same silver electric kettle in her hand.\n- Both characters make dramatic eye contact with each other, maintaining the original expressions and interaction.\n- Preserve the original body movements, hand gestures, object interactions, facial expressions and action timing.\n- Keep the coffee powder, milk, red mug, silver kettle and countertop consistent with the original video.\n\nCAMERA AND VISUAL STYLE:\n\n- Medium static camera shot.\n- Same camera angle, framing, perspective and composition as the original video.\n- Bright, natural kitchen lighting.\n- Realistic human movements and natural facial expressions.\n- Photorealistic output with realistic skin textures, clothing details and natural shadows.\n- Maintain consistent character identities throughout every frame.\n\nSTRICT RULES:\n\nDo not retain either of the original video characters. Both must be completely replaced by the respective boy and girl from the provided reference images.\n\nDo not mix their faces or identities. Do not swap their positions. Do not redesign their appearance or outfits.\n\nDo not change the kitchen, camera angle, background, props, actions, scene timing or original video sequence.\n\nFINAL RESULT: The original video should look exactly the same in terms of scene, actions and cinematography, but the original man and woman should now be replaced by the boy and girl from the provided reference images."
+      ]
+    },
+    {
       "id": "mvs3k6xj",
       "url": "https://www.instagram.com/reel/DfCbmNqTxRU/",
       "type": "reel",
@@ -98,5 +108,5 @@
       ]
     }
   ],
-  "updated": "2026-10-28T12:34:56.412Z"
+  "updated": "2026-10-31T12:51:23.763Z"
 }
