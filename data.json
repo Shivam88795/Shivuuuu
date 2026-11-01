@@ -15,6 +15,17 @@
   },
   "reels": [
     {
+      "id": "mvxop6v6",
+      "url": "https://www.instagram.com/reel/DfMgMkgzyuB/",
+      "type": "reel",
+      "code": "DfMgMkgzyuB",
+      "title": "Make this viral video with your face",
+      "price": 29,
+      "prompts": [
+        "Replace the main character in the video with the person from the provided reference image (young man wearing a red, white, and blue sweater). Replace the floating digital interface and Instagram profile scene with the exact provided Instagram profile screenshot. Maintain the exact same camera movement, hand gestures, background, and frame pacing without any morphing or distortion.\"\nBehtar results ke liye kuch tips:\nAgar aap Runway ya kisi aise tool ka use kar rahe hain jisme masking ka option hai, to sirf character aur us screen area ko mask karein jahan Insta profile aani hai. Isse background aur aas-paas ka area bilkul original jaisa hi rahega. \nImage prompt options mein dono reference images (23112.png aur 23105.jpg) ko strictly follow karne ki setting high (denoising strength/image weight) par rakhein."
+      ]
+    },
+    {
       "id": "mvxcccbd",
       "url": "https://www.instagram.com/reel/De4ExDTTQYx/",
       "type": "reel",
@@ -141,5 +152,5 @@
       "price": 0
     }
   ],
-  "updated": "2026-11-01T10:18:53.340Z"
+  "updated": "2026-11-01T10:25:32.421Z"
 }
