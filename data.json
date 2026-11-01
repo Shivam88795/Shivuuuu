@@ -9,7 +9,9 @@
       "assets/sound-1792691851866-2.mp3",
       "assets/sound-1792691851866-3.mp3",
       "assets/sound-1792691851866-4.mp3"
-    ]
+    ],
+    "telegram": "httpstmeKGyRpyBfN7A1MDZl",
+    "qr": "assets/qr-1793507881558.jpg"
   },
   "reels": [
     {
@@ -20,7 +22,8 @@
       "title": "How to make this viral trend video",
       "prompts": [
         "CHARACTER REPLACEMENT — STRICT REFERENCE IMAGE LOCK\n\nUse the uploaded video as the primary video reference. Replace BOTH original characters in the video with the two characters provided in the reference images.\n\nCHARACTER REPLACEMENT INSTRUCTIONS:\n\n1. Boy Character: The boy character is provided in the reference image. Completely replace the original man standing on the RIGHT side with this reference boy. Preserve his exact facial identity, facial structure, hairstyle, skin tone, outfit, body proportions and overall appearance.\n\n2. Girl Character: The girl character is also provided in the reference image. Completely replace the original woman standing on the LEFT side with this reference girl. Preserve her exact facial identity, facial features, hairstyle, skin tone, outfit and body proportions.\n\nSCENE AND ACTION PRESERVATION:\n\n- Keep the exact same modern kitchen environment from the original video.\n- The boy stands on the RIGHT side of the frame.\n- The girl stands on the LEFT side of the frame.\n- The boy clumsily spills coffee powder and milk directly onto the white countertop next to the red mug.\n- The girl holds the same silver electric kettle in her hand.\n- Both characters make dramatic eye contact with each other, maintaining the original expressions and interaction.\n- Preserve the original body movements, hand gestures, object interactions, facial expressions and action timing.\n- Keep the coffee powder, milk, red mug, silver kettle and countertop consistent with the original video.\n\nCAMERA AND VISUAL STYLE:\n\n- Medium static camera shot.\n- Same camera angle, framing, perspective and composition as the original video.\n- Bright, natural kitchen lighting.\n- Realistic human movements and natural facial expressions.\n- Photorealistic output with realistic skin textures, clothing details and natural shadows.\n- Maintain consistent character identities throughout every frame.\n\nSTRICT RULES:\n\nDo not retain either of the original video characters. Both must be completely replaced by the respective boy and girl from the provided reference images.\n\nDo not mix their faces or identities. Do not swap their positions. Do not redesign their appearance or outfits.\n\nDo not change the kitchen, camera angle, background, props, actions, scene timing or original video sequence.\n\nFINAL RESULT: The original video should look exactly the same in terms of scene, actions and cinematography, but the original man and woman should now be replaced by the boy and girl from the provided reference images."
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvs3k6xj",
@@ -31,7 +34,8 @@
       "prompts": [
         "🔒 UNIVERSAL IMAGE FACE LOCK — STRICT IDENTITY PRESERVATION\n\nUse the uploaded reference photo as the ONLY source of facial identity. Preserve the person's exact original face and identity with maximum possible accuracy.\n\nABSOLUTE FACE LOCK:\n\n- Keep the exact same facial structure, face shape, forehead, jawline, cheekbones, chin, nose shape, lips, eyes, eyebrows, ears, and natural facial proportions.\n- Preserve the original skin tone, natural skin texture, pores, facial marks, and unique identifying features.\n- Keep the original hairstyle, hairline, and facial hair exactly the same unless explicitly instructed otherwise.\n- Maintain the person's original age appearance and natural, recognizable identity.\n- Do NOT beautify, reshape, retouch, smooth, reconstruct, stylize, or regenerate the face.\n- Do NOT create a similar-looking person or an AI-generated replacement face.\n- No face swapping, face morphing, artificial symmetry, skin whitening, or changes to facial proportions.\n- Make the result look like the exact same real person photographed in a different scene.\n\nEDITING PRIORITY: Change only the requested elements, such as clothing, pose, body position, background, props, camera framing, and lighting. Keep the face untouched and consistent with the reference image.\n\nFINAL QUALITY CHECK: Before finalizing, compare the generated face with the reference photo. Prioritize identity preservation over artistic styling, beauty enhancement, or creative interpretation.\n\nSTRICT RULE: Same person, same face, same identity. No facial alterations. Maximum reference fidelity, photorealistic output, natural skin texture, no AI-looking face.",
         "🔒 UNIVERSAL VIDEO FACE LOCK — STRICT IDENTITY PRESERVATION\n\nUse the uploaded reference image as the ONLY source of the person's facial identity. Maintain the exact same recognizable person throughout the entire video, from the first frame to the last frame.\n\nABSOLUTE FACE LOCK:\nPreserve the original face shape, forehead, jawline, cheekbones, chin, nose, lips, eyes, eyebrows, ears, skin tone, natural skin texture, facial marks, hairstyle, hairline, and facial hair exactly as shown in the reference image.\n\nFRAME-BY-FRAME IDENTITY CONSISTENCY:\n\n- Keep the same facial identity in every frame, with no face morphing, identity drift, or random facial changes.\n- Do not regenerate, beautify, reshape, smooth, or replace the face.\n- Prevent flickering facial features, changing eye shapes, unstable lips, shifting jawlines, and inconsistent skin tones.\n- Maintain natural facial proportions during head turns, body movements, and changes in camera perspective.\n- Preserve the original person's age appearance and realistic skin texture.\n- Keep facial expressions natural and subtle without distorting identity.\n\nMOTION AND CAMERA:\nAllow realistic body movement, natural blinking, subtle head movements, and physically believable actions. Keep the face visually consistent during motion. Avoid unnecessary fast head turns, extreme facial angles, excessive motion blur, and rapid camera movements that could distort facial identity.\n\nEDITING RULE:\nChange only the scene elements explicitly requested in the main prompt, such as outfit, background, environment, body movement, props, and camera motion. Do not alter the person's facial identity.\n\nSTRICT NEGATIVE INSTRUCTIONS:\nNo face swap, no identity change, no face morphing, no facial reconstruction, no AI-generated replacement face, no facial flickering, no inconsistent eyes, no changing nose or lips, no skin-tone shifts, no artificial beauty filters, and no identity drift between frames.\n\nFINAL OUTPUT:\nPhotorealistic video featuring the exact same recognizable person from the reference image, with maximum possible facial consistency across all frames. Identity preservation takes priority over unnecessary visual effects or stylization."
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvqngz2x",
@@ -41,7 +45,8 @@
       "title": "How to make this viral cricket video",
       "prompts": [
         "Video prompt\n\n\nVILLAGE CRICKET PULL SHOT – GOOGLE FLOW REFERENCE-VIDEO PROMPT\n(Upload: @video1 = cricket_reference_10s_MUTED.mp4, @image1 = your photo. Works for boy or girl. 10s, 9:16)\nDURATION: 10 seconds.\nASPECT RATIO: 9:16 vertical.\nREFERENCE VIDEO (MASTER)\n@video1 is the master reference. Recreate it exactly, frame by frame: the same camera position, camera angle, framing, camera distance, lens look, slow motion timing and the same continuous shot. Copy every movement exactly as in @video1: the active batting stance, the bat waggles, the tap of the bat on the pitch, the backlift, the ball arriving at waist/chest height, the pull shot and the bat swing path, the ball flying up into the sky, the slow-motion one-leg finishing pose, turning to the camera, hiding the face behind the bat, the smile and walking away. Same timing as @video1.\nLOCATION: Keep the location exactly as in @video1 — the same dusty village cricket ground, the same cement pitch, the same three wooden stumps in the same place next to the batter, the same sky-blue building, the same trees and the same hazy evening sky. Do not change or add anything to the location.\nIDENTITY\n@image1 is the ONLY identity reference. Replace the person in @video1 with the person in @image1 — same face, gender, age, skin tone, body shape and hairstyle as @image1. Do not copy the original person&#8217;s face from @video1.\nClothes and shoes come from @image1 (same colours and style), identical in every frame. If the legs or shoes are not visible in @image1, use plain trousers matching the top and white sneakers.\nOnly one person in the video.\nBAT AND BALL: Same bat and ball movement as @video1. Plain wooden bat with no stickers, no brand name, no text.\nREALISM: Photorealistic real phone video, natural skin, natural motion, same lighting as @video1.\nAUDIO: Preserve the original background music and its timing from @video1 if supported. Do not add dialogue, voice-over or unrelated sound effects. No lip-sync, no speaking.\nSTRICT RULES\n&#8211; Do not invent new scenes, do not cut to close-ups, do not change the camera angle.\n&#8211; No extra people. No text, captions, logos or watermarks.\n&#8211; Keep 9:16 vertical.\nFINAL RESULT: The exact same video as @video1, with only the person replaced by the person from @image1."
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvp80zyt",
@@ -51,7 +56,8 @@
       "title": "How to make this viral attitude sapwa ai video",
       "prompts": [
         "AI Generator ke liye Prompt:\n\"A 3D animated, anthropomorphic green lizard character with a cool, confident, and slightly menacing attitude. He has a smug smile and is wearing stylish black sunglasses, a silver chain necklace with a crown pendant, a plain white t-shirt underneath an unbuttoned light grey casual shirt, black pants, and black beaded bracelets on his wrists. He is standing in the middle of a beautiful snowy mountain village at dusk. The background features cozy wooden cabins with warm glowing string lights (one cabin has a 'MOUNTAIN GOODS' sign), snow-covered pine trees, and grand snow-capped mountains. Snowflakes are gently falling in the air. He starts with his hands in his pockets, speaks with a calm but dangerous tone, gestures with one hand, and then turns around to walk away into the snowy street. Cinematic lighting, ultra-detailed, high-quality 3D animation style.\"\n\nVideo ke liye Dialogue (Voiceover ya Lip-sync ke liye):\n\n\"Main ladai jhagde se door rehta hu, to log sochte hain ki main darta hu... Dua karna, kabhi gusse me mulakat na ho.\"  \n\n(Note: Video ke end mein jo skull wala animation pop up hota hai, wo usually video editing software mein as an overlay lagaya jata hai, isliye main prompt mein base character ki details hi rakhi hain)."
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvmchxh9",
@@ -62,7 +68,8 @@
       "prompts": [
         "AI image PROMPT — Funny Child Mind Animal Art\nCreate a funny, weird, innocent-looking animal drawing based on this animal name: [.            ].\n\nThe artwork must look like a young child (around 5–7 years old) has drawn it with colored pencils and crayons on plain white paper. Give the animal a hilariously weird body shape, oversized uneven eyes, a silly facial expression, a crooked smile, funny teeth, a tongue sticking out, thin awkward legs, tiny paws or feet, and exaggerated cartoon-like features. Add messy fur or feathers using rough, uneven pencil strokes. Use imperfect hand-drawn black outlines, random coloring outside the lines, visible pencil shading, childish proportions, and charmingly bad anatomy.\n\nMake the animal look absurdly funny and unintentionally goofy, as if a child's imagination created the strangest animal ever. Keep the background plain white paper with a subtle paper texture. Full animal visible, centered composition, original handmade drawing aesthetic, simple 2D art, low-tech school drawing style, authentic childlike imperfections.\n\nImportant: It must look genuinely hand-drawn by a child, NOT like polished digital art, NOT 3D, NOT realistic photography, NOT professional cartoon art. No text, no watermark, no extra objects. High-resolution image.",
         "MASTER IMAGE-TO-VIDEO PROMPT — FUNNY CHILD ART TO REAL WORLD\n\nUse the uploaded drawing as the ONLY reference. Create an ultra-realistic, cinematic 9:16 vertical video that transforms the exact funny child-made drawing into a living creature in the real world.\n\nSCENE 1 — ORIGINAL DRAWING: Start by clearly showing the uploaded drawing on a plain sheet of paper. Preserve its original funny design, weird proportions, unusual body shape, facial expression, eyes, mouth, limbs, patterns, and every unique detail.\n\nSCENE 2 — MAGICAL TRANSFORMATION: The drawn creature magically comes alive and emerges from the paper into the real world. Its hand-drawn shapes gradually transform into realistic skin, fur, feathers, scales, wings, or other natural textures according to the creature in the drawing. The transformation must feel seamless, creative, funny, and visually surprising.\n\nSCENE 3 — REAL-WORLD CREATURE: Show the fully transformed creature in a photorealistic outdoor environment that naturally suits its appearance. It moves, walks, runs, flies, or behaves according to its anatomy. Preserve the drawing's original funny personality and recognizable features, even after becoming realistic. Use natural daylight, realistic shadows, detailed textures, believable physics, cinematic depth of field, and subtle handheld camera movement.\n\nIMPORTANT: Automatically identify the creature and its anatomy from the uploaded drawing. Do not assume it is always a cat, dog, or any particular animal. Adapt the environment, materials, movement, and transformation to the specific drawing. The final creature must look like the exact drawing brought to life, not a generic animal.\n\nVIDEO SETTINGS: Vertical 9:16, ultra-photorealistic, cinematic 4K look, smooth motion, consistent creature identity, realistic environmental lighting, engaging viral-video style.\n\nNEGATIVE PROMPT: No cartoon rendering, no anime, no unrelated creature, no redesign, no extra limbs, no distorted anatomy, no flickering, no morphing into a different animal, no text, no subtitles, no watermark, no logos, no borders."
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvktxntd",
@@ -73,7 +80,8 @@
       "prompts": [
         "Image prompt \nCreate an ultra-realistic, funny anthropomorphic version of a normal pet dog, standing upright on two hind legs like a human in a traditional Indian village farm. The dog should have its original natural breed, face, fur color, and recognizable features preserved. Give the dog a playful, confident expression with its tongue slightly out, one front paw raised to its forehead in a funny salute, and the other paw resting on its waist. Dress it in a colorful traditional Indian gamcha tied around its waist, with bright orange, yellow, and pink fabric flowing naturally. Background: a beautiful rural Indian farm with wooden fencing, a brown cow, a few chickens, green grass, a hay shed, and a large shady tree. Warm golden-hour sunlight, realistic fur texture, natural shadows, cinematic depth of field, detailed paws, lifelike anatomy, professional photography, highly detailed, 4K quality, vertical 9:16 composition, full body visible, realistic environment, humorous viral social media video aesthetic. No text, no watermark, no cartoon, no illustration.",
         "Video prompt \n\"A pug dog standing on its hind legs wearing a colorful cloth wrap, dancing expressively and fastly in a sad, dramatic Bollywood style, perfectly synchronized to a melancholic Hindi song. The dog should have human-like movements and facial expressions conveying heartbreak. Background is a rural farm setting with cows, chickens, and a rustic hut.\""
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvkeg5fe",
@@ -85,7 +93,8 @@
         "Image prompt :\nCreate an ultra-realistic, high-quality 9:16 vertical Instagram creator profile poster using the two uploaded reference images.\n\nREFERENCE 1 — MY PERSONAL PHOTO: Use my exact face, hairstyle, skin tone, facial features, and identity. Preserve my natural appearance without beautification or facial changes.\n\nREFERENCE 2 — MY INSTAGRAM PROFILE SCREENSHOT: Recreate my Instagram profile interface accurately, including my username, profile picture, bio, follower count, post count, following count, dashboard, profile buttons, and visible post thumbnails. Keep all profile details consistent with the uploaded screenshot. Do not invent new statistics or change my username.\n\nCOMPOSITION: Place my Instagram profile screenshot as the full-screen background, resembling a real Instagram profile page on a clean white interface. Position a realistic, full-body cutout of me standing confidently in the center foreground, overlapping the profile interface and post grid. My entire body should be visible from head to shoes, with natural proportions and realistic edges.\n\nOUTFIT: A stylish blue-and-white color-block jacket, plain black T-shirt, relaxed-fit black jeans, and white sneakers. Hands inside pockets, relaxed confident posture, looking directly at the camera. Adapt the outfit to my reference photo if needed.\n\nLIGHTING & QUALITY: Professional studio lighting, realistic skin texture, sharp facial details, natural shadows beneath my shoes, premium creator branding, crisp Instagram UI, photorealistic compositing, HDR, 4K quality.\n\nIMPORTANT: Preserve my exact identity. Keep the Instagram screenshot recognizable and readable. Do not distort the face, hands, body proportions, profile layout, or thumbnails. No extra text, no watermark, no additional logos, no unnecessary objects. Make it look like a professionally edited creator profile poster, not an AI-generated collage.",
         "Video prompt 1:\nA miniature version of me climbs down from profile pic and wipes off and cleans the profile usina cloth. Seamless movements. Clean whole of the profile pic in the backaround",
         "Video prompt 2:\nHe decorates the profile in background and decorates the floor with garlands the picks up a pumpkin and perform aarti"
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mvaw8pmw",
@@ -95,7 +104,8 @@
       "title": "How to make this viral car effect",
       "prompts": [
         "\"First-person POV (Point of View), jisme ek vyakti ne black leather gloves pehne hue hain. Scene ek khule, flat safed desert (salt flat) me hai jiske upar saaf neela aasmaan hai. Aasmaan se car ke alag-alag parts tezi se niche ki taraf gir rahe hain. Vyakti achanak apne dono haath aage karta hai aur saare car ke parts hawa me hi freeze ho jaate hain. Phir vyakti apni mutthi band karta hai aur haath apni taraf kichta hai, jisse saare parts tezi se ek saath judkar ek sleek, silver futuristic car me assemble ho jaate hain. Aakhir me, vyakti ke haath me ek car ki chabi aati hai, wo button dabata hai, aur car ki headlights on ho jaati hain.\""
-      ]
+      ],
+      "price": 0
     },
     {
       "id": "mv94oumi",
@@ -105,8 +115,9 @@
       "title": "How to make this insane clip free with ai",
       "prompts": [
         "\"holding a wooden cane, sprinting incredibly fast, performing dynamic parkour dives, rolls, and leaps over a concrete barrier on an airport tarmac. In the background, there are parked luxury cars and a black private jet. Dynamic tracking camera following the fast movement, realistic cinematic lighting, high-speed action scene.\"\nAap bas apne character ka naam ya @handle is prompt ke shuru mein laga dena, aur aapka perfect action scene ban jayega."
-      ]
+      ],
+      "price": 0
     }
   ],
-  "updated": "2026-10-31T12:51:23.763Z"
+  "updated": "2026-11-01T04:38:34.743Z"
 }
