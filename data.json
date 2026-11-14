@@ -15,6 +15,18 @@
   },
   "reels": [
     {
+      "id": "mwgadzv4",
+      "url": "https://www.instagram.com/reel/DfuBtY_zkc5/",
+      "type": "reel",
+      "code": "DfuBtY_zkc5",
+      "title": "How make these viral claud videos free",
+      "price": 0,
+      "prompts": [
+        "Script writing prompt:\n\nतुम एक प्रोफेशनल Ancient Mythology Storyteller और Hindi Scriptwriter हो।\n\nमुझे भारत के प्राचीन शास्त्रों, वेदों, उपनिषदों, रामायण, महाभारत और पुराणों से एक ऐसी अद्भुत, रहस्यमयी और बेहद दिलचस्प कथा सुनाओ, जिसे सुनकर दर्शक आखिरी सेकंड तक वीडियो छोड़ना न चाहें।\n\nस्क्रिप्ट लिखने के नियम:\n\n1. कहानी वास्तव में प्राचीन ग्रंथों या पौराणिक कथाओं पर आधारित हो। मनगढ़ंत कहानी को शास्त्रों की कथा बताकर पेश मत करना।\n2. कहानी में कोई अनोखी घटना, चौंकाने वाला रहस्य, देवताओं की परीक्षा, श्राप, वरदान, त्याग या असाधारण घटना हो।\n3. शुरुआत बेहद दमदार HOOK से करो, जिससे पहले 3 सेकंड में ही दर्शक के मन में सवाल पैदा हो जाए।\n4. पूरी कहानी ऐसे लिखो जैसे कोई अनुभवी नैरेटर बहुत इंटेंस आवाज में रहस्यमयी अंदाज में सुना रहा हो।\n5. भाषा आसान, शुद्ध और प्रभावशाली हिंदी हो। बोलचाल वाली हिंदी का इस्तेमाल करो ताकि हर दर्शक आसानी से समझ सके।\n6. कहानी में सस्पेंस धीरे-धीरे बढ़ना चाहिए और बीच-बीच में ऐसे मोड़ आने चाहिए जिनकी दर्शक ने कल्पना भी न की हो।\n7. अंत में एक बेहद प्रभावशाली खुलासा या सीख हो, जो दर्शकों के दिमाग में रह जाए।\n8. कहानी में अनावश्यक जानकारी, लंबे संवाद या बेकार की भूमिका न हो।\n9. स्क्रिप्ट लगभग 120–150 शब्दों की हो, जिसे 1 मिनट में बोला जा सके।\n10. कहानी की शुरुआत और अंत दोनों सिनेमैटिक और इंटेंस होने चाहिए।\n\nसबसे जरूरी:\nहर बार एक बिल्कुल नई कथा चुनना। नचिकेता और यमराज या राजा शिबि की कहानी दोबारा मत सुनाना।\n\nपहले कथा का छोटा सा शीर्षक लिखो, फिर सीधे पूरी नैरेशन स्क्रिप्ट दो। कोई अतिरिक्त व्याख्या या सुझाव मत देना।",
+        "Claud Video prompt:\n\nMere audio aur uske script (text) se ek cartoon story animation video banao,\nbilkul pichli \"Raja Shibi\" wali video ke style mein.\n\nINPUT\n- Audio file aur Hindi script (dono neeche/attach hain).\n- Script ko main sahi maan lo. Audio sun nahi sakte to timing audio ki\n  pauses (silence detection) se nikalo.\n\nVIDEO SPEC\n- Vertical 720x1280, 24fps, original audio ke saath, audio ki poori length.\n- Format: mp4 (H.264 + AAC). File 30 MB se choti rakho, nahi to compress karo.\n\nSTYLE\n- Flat-vector cartoon, gaadhe outline wale characters (bade sir, bade expressive\n  aankhein), rang-birange backgrounds (mahal/durbar, raat, sunrise, divine glow).\n- Har sentence/phrase ke liye alag scene: character animation (blink, bolna,\n  haath ke gestures, udna), halka camera zoom, scene change par crossfade,\n  sparkles/rays/petals jaise effects.\n- Kahani ke mukhya characters, jagah aur turning points ke hisaab se scenes\n  design karo. Hinsa ya graphic cheez na dikhao, symbolic dikhao.\n\nCAPTIONS\n- Neeche bold peele Hindi caption (dark outline + shadow), 2-3 shabd ek baar mein.\n- Har chunk pop-in animation ke saath, apne bole gaye shabdon ke saath sync.\n- Devanagari font sahi shaping ke saath (FreeSans / Noto Devanagari).\n\nTIMING\n1. Script ko phrases mein todo (, । ! ... par).\n2. Audio ki silence gaps nikalo aur phrases ko un gaps se align karo\n   (DP/matching, har phrase ka bolne ka speed lagbhag ek jaisa rahe).\n3. Phrase ke andar caption chunks ko characters ke hisaab se time do.\n4. Scene change ko pause ke beech mein rakho.\n\nBANANE KA TAREEKA\n- Canvas/HTML mein frames draw karo, Playwright se render karo, ffmpeg se audio\n  ke saath jodo. Pehle kuch test frames ki contact sheet dekho, galtiyan theek\n  karo (text cut, overlap, rang), phir poora render karo.\n- Final video bhejo aur batao ki timing audio sun kar nahi, script se match\n  ki gayi hai.\n\nPehle script padho, agar koi character/jagah ka design unclear ho to ek chhota\nsawal poochho, warna seedha bana do."
+      ]
+    },
+    {
       "id": "mvxop6v6",
       "url": "https://www.instagram.com/reel/DfMgMkgzyuB/",
       "type": "reel",
@@ -152,5 +164,5 @@
       "price": 0
     }
   ],
-  "updated": "2026-11-01T13:08:48.210Z"
+  "updated": "2026-11-14T10:52:32.851Z"
 }
